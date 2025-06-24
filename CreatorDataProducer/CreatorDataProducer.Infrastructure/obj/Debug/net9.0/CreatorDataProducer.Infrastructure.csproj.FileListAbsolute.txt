@@ -1,0 +1,17 @@
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\bin\Debug\net9.0\CreatorDataProducer.Infrastructure.deps.json
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\bin\Debug\net9.0\CreatorDataProducer.Infrastructure.dll
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\bin\Debug\net9.0\CreatorDataProducer.Infrastructure.pdb
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\bin\Debug\net9.0\CreatorDataProducer.Application.dll
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\bin\Debug\net9.0\CreatorDataProducer.Domain.dll
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\bin\Debug\net9.0\CreatorDataProducer.Application.pdb
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\bin\Debug\net9.0\CreatorDataProducer.Domain.pdb
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\obj\Debug\net9.0\CreatorDataProducer.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\obj\Debug\net9.0\CreatorDataProducer.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\obj\Debug\net9.0\CreatorDataProducer.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\obj\Debug\net9.0\CreatorDataProducer.Infrastructure.AssemblyInfo.cs
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\obj\Debug\net9.0\CreatorDataProducer.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\obj\Debug\net9.0\CreatorD.AFD8C4F2.Up2Date
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\obj\Debug\net9.0\CreatorDataProducer.Infrastructure.dll
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\obj\Debug\net9.0\refint\CreatorDataProducer.Infrastructure.dll
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\obj\Debug\net9.0\CreatorDataProducer.Infrastructure.pdb
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Infrastructure\obj\Debug\net9.0\ref\CreatorDataProducer.Infrastructure.dll

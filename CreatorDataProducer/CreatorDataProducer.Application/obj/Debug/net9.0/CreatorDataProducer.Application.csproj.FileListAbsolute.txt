@@ -1,0 +1,15 @@
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\bin\Debug\net9.0\CreatorDataProducer.Application.deps.json
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\bin\Debug\net9.0\CreatorDataProducer.Application.dll
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\bin\Debug\net9.0\CreatorDataProducer.Application.pdb
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\bin\Debug\net9.0\CreatorDataProducer.Domain.dll
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\bin\Debug\net9.0\CreatorDataProducer.Domain.pdb
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\obj\Debug\net9.0\CreatorDataProducer.Application.csproj.AssemblyReference.cache
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\obj\Debug\net9.0\CreatorDataProducer.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\obj\Debug\net9.0\CreatorDataProducer.Application.AssemblyInfoInputs.cache
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\obj\Debug\net9.0\CreatorDataProducer.Application.AssemblyInfo.cs
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\obj\Debug\net9.0\CreatorDataProducer.Application.csproj.CoreCompileInputs.cache
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\obj\Debug\net9.0\CreatorD.ADF6B442.Up2Date
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\obj\Debug\net9.0\CreatorDataProducer.Application.dll
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\obj\Debug\net9.0\refint\CreatorDataProducer.Application.dll
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\obj\Debug\net9.0\CreatorDataProducer.Application.pdb
+C:\Users\crove\Desktop\repositories\pessoal\CreatorDataProducer\CreatorDataProducer.Application\obj\Debug\net9.0\ref\CreatorDataProducer.Application.dll
