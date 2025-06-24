@@ -19,6 +19,7 @@ export async function saveCreator(data) {
     creatorName: data.creatorName,
     totalFollowers: data.totalFollowers,
     contentType: data.contentType,
+    revenue: data.revenue
   });
   await creator.save();
   console.log('[MongoDB External] Criador salvo com sucesso.');
