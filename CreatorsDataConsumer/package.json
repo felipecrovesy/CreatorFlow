@@ -1,0 +1,12 @@
+{
+  "name": "creators-data-consumer",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.0.3",
+    "fastify": "^4.0.0",
+    "mongoose": "^7.0.0"
+  }
+}
