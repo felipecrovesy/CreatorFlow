@@ -4,7 +4,7 @@
   "type": "module",
   "main": "src/index.js",
   "dependencies": {
-    "amqplib": "^0.10.3",
+    "amqplib": "^0.x.x",
     "dotenv": "^16.0.3",
     "fastify": "^4.0.0",
     "mongoose": "^7.0.0"
