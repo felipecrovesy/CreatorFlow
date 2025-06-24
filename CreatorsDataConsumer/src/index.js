@@ -44,6 +44,14 @@ async function start() {
 
   const app = Fastify();
 
+  // ===== CORS MANUAL VIA HOOK =====
+  app.addHook('onSend', async (request, reply, payload) => {
+    reply.header('Access-Control-Allow-Origin', '*');
+    reply.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    reply.header('Access-Control-Allow-Headers', 'Content-Type');
+    return payload;
+  });
+
   app.get('/content-type-resume', async () => {
     const result = await getCreatorsResumeByContentType();
     return result;
