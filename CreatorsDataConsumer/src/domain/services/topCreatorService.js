@@ -11,10 +11,10 @@ export function initExternalDb(uri) {
 }
 
 export function initTopCreatorModel(schema) {
-  ExternalTopCreator = externalDb.model('TopCreator', schema, 'top_creators_by_content-type');
+  ExternalTopCreator = externalDb.model('TopCreator', schema, 'creators');
 }
 
-export async function saveTopCreator(data) {
+export async function saveCreator(data) {
   const creator = new ExternalTopCreator({
     creatorName: data.creatorName,
     totalFollowers: data.totalFollowers,
@@ -22,6 +22,31 @@ export async function saveTopCreator(data) {
   });
   await creator.save();
   console.log('[MongoDB External] Criador salvo com sucesso.');
+}
+
+export async function getAllCreatorsPaginated(page = 1, pageSize = 10) {
+  const skip = (page - 1) * pageSize;
+
+  const creators = await ExternalTopCreator.find({}, {
+    creatorName: 1,
+    totalFollowers: 1,
+    revenue: 1,
+    contentType: 1,
+    _id: 0
+  })
+  .skip(skip)
+  .limit(pageSize)
+  .lean();
+
+  const totalCount = await ExternalTopCreator.countDocuments();
+
+  return {
+    total: totalCount,
+    page,
+    pageSize,
+    totalPages: Math.ceil(totalCount / pageSize),
+    data: creators
+  };
 }
 
 export async function getCreatorsResumeByContentType() {

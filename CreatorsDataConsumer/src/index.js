@@ -7,8 +7,9 @@ import { parseMassTransitMessage } from './infrastructure/parsers/massTransitPar
 import {
   initExternalDb,
   initTopCreatorModel,
-  saveTopCreator,
-  getCreatorsResumeByContentType
+  saveCreator,
+  getCreatorsResumeByContentType,
+  getAllCreatorsPaginated
 } from './domain/services/topCreatorService.js';
 
 dotenv.config();
@@ -34,7 +35,7 @@ async function start() {
     if (msg !== null) {
       const data = parseMassTransitMessage(msg);
       if (data) {
-        await saveTopCreator(data);
+        await saveCreator(data);
         channel.ack(msg);
       } else {
         console.warn('[RabbitMQ] Mensagem ignorada por falha no parsing.');
@@ -54,6 +55,14 @@ async function start() {
 
   app.get('/content-type-resume', async () => {
     const result = await getCreatorsResumeByContentType();
+    return result;
+  });
+
+  app.get('/all-creators', async (request, reply) => {
+    const page = parseInt(request.query.page) || 1;
+    const pageSize = parseInt(request.query.pageSize) || 10;
+
+    const result = await getAllCreatorsPaginated(page, pageSize);
     return result;
   });
 
