@@ -85,18 +85,6 @@ Também é possível visualizar os dados diretamente pelos endpoints da aplicaç
 - Aba Content Type Resume: http://localhost:3000/content-type-resume
 - Aba All Creators: http://localhost:3000/all-creators
 
-<br><br>
-## <a name="contributing">🤝 Contribuições</a>
-
-Contriguições, issues, e novos recursos são vem vindos!
-
-1. Faça um Fork do projeto (<https://github.com/yourname/yourproject/fork>)
-2. Crie a sua branch de feature (`git checkout -b feature/fooBar`)
-3. Commit suas alterações (`git commit -am 'Add some fooBar'`)
-4. Faça um Push para a branch (`git push origin feature/fooBar`)
-5. Crie um novo Pull Request
-
-
 ## <a name="authors">👥 Autores</a>
 
 <table style="border-collapse: collapse; table-layout: auto; text-align: left;">
