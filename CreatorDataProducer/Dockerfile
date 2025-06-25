@@ -1,6 +1,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-WORKDIR /app
+WORKDIR /src
+
 COPY . .
 RUN dotnet restore
-RUN dotnet publish -c Release -o out
-ENTRYPOINT ["dotnet", "out/CreatorDataProducer.Worker.dll"]
+RUN dotnet publish -c Release -o /app/out
+
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/out .
+
+ENTRYPOINT ["dotnet", "CreatorDataProducer.Worker.dll"]

@@ -60,6 +60,8 @@ services:
     build:
       context: ./ExternalTool
     container_name: external-tool
+    ports:
+      - "5000:5000"
     networks:
       - creators-net
 

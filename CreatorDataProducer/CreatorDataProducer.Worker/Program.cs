@@ -34,10 +34,15 @@ var builder = Host.CreateDefaultBuilder(args)
                     h.Username(rabbitConfig.Username);
                     h.Password(rabbitConfig.Password);
                 });
+                
+                cfg.UseRetry(r =>
+                {
+                    r.Interval(5, TimeSpan.FromSeconds(5));
+                });
 
                 cfg.ReceiveEndpoint("creator-resume-message", e =>
                 {
-                    e.ConfigureConsumeTopology = true;  // Agora pode deixar true
+                    e.ConfigureConsumeTopology = true;
                     e.ConfigureConsumer<FakeCreatorResumeMessageConsumer>(context);
                 });
             });
@@ -45,11 +50,14 @@ var builder = Host.CreateDefaultBuilder(args)
 
         services.AddQuartz(q =>
         {
+            var initialDelay = config.GetSection("Quartz").GetValue<int>("InitialDelaySeconds");
+            
             var jobKey = new JobKey("CreatorResumeJob");
             q.AddJob<CreatorResumeJob>(opts => opts.WithIdentity(jobKey));
             q.AddTrigger(opts => opts
                 .ForJob(jobKey)
                 .WithIdentity("CreatorResumeJob-trigger")
+                .StartAt(DateBuilder.FutureDate(initialDelay, IntervalUnit.Second))
                 .WithSimpleSchedule(x => x.WithIntervalInSeconds(200).RepeatForever()));
         });
 
