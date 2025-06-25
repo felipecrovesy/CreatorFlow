@@ -26,7 +26,9 @@ export async function saveCreator(data) {
 }
 
 export async function getAllCreatorsPaginated(page = 1, pageSize = 10) {
-  const skip = (page - 1) * pageSize;
+  const p = parseInt(page) || 1;
+  const limit = parseInt(pageSize) || 10;
+  const skip = (p - 1) * limit;
 
   const creators = await Creator.find({}, {
     creatorName: 1,
@@ -36,17 +38,17 @@ export async function getAllCreatorsPaginated(page = 1, pageSize = 10) {
     _id: 0
   })
   .skip(skip)
-  .limit(pageSize)
+  .limit(limit)
   .lean();
 
   const totalCount = await Creator.countDocuments();
 
   return {
-    total: totalCount,
-    page,
-    pageSize,
-    totalPages: Math.ceil(totalCount / pageSize),
-    data: creators
+   total: totalCount,
+   page: p,
+   pageSize: limit,
+   totalPages: Math.ceil(totalCount / limit),
+   data: creators
   };
 }
 

@@ -1,4 +1,3 @@
-
 <template>
   <div class="container my-4 custom-background text-white">
     <h1 class="text-center mb-4">Dashboard</h1>
@@ -11,6 +10,12 @@
         <button class="nav-link" :class="{ active: activeTab === 'other' }" @click="setTab('other')">All Creators</button>
       </li>
     </ul>
+
+    <div v-if="loading" class="text-center my-4">
+      <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
 
     <div v-if="activeTab === 'resume'">
       <div class="mb-3">
@@ -25,7 +30,7 @@
       </div>
 
       <table class="table table-striped table-bordered table-dark">
-        <thead class="table-secondary">
+        <thead class="table-secondary text-center">
           <tr>
             <th>Content Type</th>
             <th>Total Followers</th>
@@ -33,8 +38,8 @@
         </thead>
         <tbody>
           <tr v-for="item in sortedAndFiltered" :key="item.contentType">
-            <td>{{ item.contentType }}</td>
-            <td>{{ item.totalFollowers }}</td>
+            <td class="text-center">{{ item.contentType }}</td>
+            <td class="text-center">{{ item.totalFollowers }}</td>
           </tr>
         </tbody>
       </table>
@@ -93,12 +98,19 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 
-const activeTab = ref('resume')
+const loading = ref(false)
+const activeTab = ref(localStorage.getItem('activeTab') || 'resume')
+
 function setTab(tab) {
   activeTab.value = tab
-  if (tab === 'other') loadAllCreators()
+  localStorage.setItem('activeTab', tab)
+  if (tab === 'other') {
+    loadAllCreators()
+  } else if (tab === 'resume') {
+    fetchContentTypeResume() 
+  }
 }
 
 const data = ref([])
@@ -109,21 +121,18 @@ const sortedAndFiltered = computed(() => {
   let result = data.value.filter(item =>
     item.contentType.toLowerCase().includes(searchText.value.toLowerCase())
   )
-
-  result = result.sort((a, b) => {
-    if (sortOrder.value === 'asc') {
-      return a.totalFollowers - b.totalFollowers
-    } else {
-      return b.totalFollowers - a.totalFollowers
-    }
-  })
-
-  return result
+  return result.sort((a, b) =>
+    sortOrder.value === 'asc'
+      ? a.totalFollowers - b.totalFollowers
+      : b.totalFollowers - a.totalFollowers
+  )
 })
 
 async function fetchContentTypeResume() {
-  const response = await fetch('http://localhost:3000/content-type-resume')
+  loading.value = true
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/content-type-resume`)
   data.value = await response.json()
+  loading.value = false
 }
 
 const allCreators = ref({ data: [] })
@@ -139,24 +148,21 @@ const filteredAndSortedCreators = computed(() => {
   let result = allCreators.value.data.filter(c =>
     c.creatorName.toLowerCase().includes(creatorSearchText.value.toLowerCase())
   )
-
-  result = result.sort((a, b) => {
+  return result.sort((a, b) => {
     const field = orderField.value
-    if (orderDirection.value === 'asc') {
-      return a[field] - b[field]
-    } else {
-      return b[field] - a[field]
-    }
+    return orderDirection.value === 'asc'
+      ? a[field] - b[field]
+      : b[field] - a[field]
   })
-
-  return result
 })
 
 async function loadAllCreators() {
-  const response = await fetch(`http://localhost:3000/all-creators?page=${currentPage.value}&pageSize=${pageSize.value}`)
+  loading.value = true
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/all-creators?page=${currentPage.value}&pageSize=${pageSize.value}`)
   const result = await response.json()
   allCreators.value = result
   totalPages.value = result.totalPages
+  loading.value = false
 }
 
 function nextPage() {
@@ -173,13 +179,17 @@ function prevPage() {
   }
 }
 
-function onPageSizeChange() {
+watch(pageSize, () => {
   currentPage.value = 1
   loadAllCreators()
-}
+})
 
 onMounted(() => {
-  fetchContentTypeResume()
+  if (activeTab.value === 'resume') {
+    fetchContentTypeResume()
+  } else {
+    loadAllCreators()
+  }
 })
 </script>
 
@@ -187,13 +197,21 @@ onMounted(() => {
 @import 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css';
 
 .custom-background {
-  background-color: #2f2f2f;
+  background-color: #1f1f1f;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
 
 .nav-link.active {
-  background-color: #444;
-  color: #fff;
+  background-color: #0d6efd;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.table-dark tbody tr:hover {
+  background-color: #2a2a2a;
+  cursor: pointer;
 }
 </style>

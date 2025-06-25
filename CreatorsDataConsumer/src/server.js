@@ -21,9 +21,9 @@ export async function startServer() {
     reply.send(data);
   });
 
-  app.get('/creators', async (request, reply) => {
-    const { page = 1, limit = 10 } = request.query;
-    const data = await getAllCreatorsPaginated(page, limit);
+  app.get('/all-creators', async (request, reply) => {
+    const { page = 1, pageSize = 10 } = request.query;
+    const data = await getAllCreatorsPaginated(page, pageSize);
     reply.send(data);
   });
 
@@ -33,6 +33,6 @@ export async function startServer() {
   await mongoose.connect(mongoUri);
   console.log('[MongoDB External] Conectado.');
 
-  await app.listen({ port: 3000 });
+  await app.listen({ port: 3000, host: '0.0.0.0' });
   console.log('[Fastify] Servidor rodando em http://localhost:3000');
 }
