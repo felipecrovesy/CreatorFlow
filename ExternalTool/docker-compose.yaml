@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  external-tool-app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/db_creators
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/app
+    restart: always
+
+  mongodb:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+
+volumes:
+  mongo_data:
