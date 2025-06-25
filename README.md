@@ -9,6 +9,8 @@ A arquitetura inclui um sistema de filas com RabbitMQ e persistência de dados e
 Essa aplicação em .NET, por sua vez, atua como produtora de mensagens, publicando-as em uma fila RabbitMQ. Um consumidor desenvolvido em Node.js consome essas mensagens, processa os dados e os armazena.
 
 Por fim, essa aplicação em Node expõe dois endpoints que são consumidos por uma interface frontend construída em Vue.js, responsável por exibir os dados de forma organizada e interativa.
+
+<img width="3008" alt="Untitled" src="https://github.com/user-attachments/assets/171ab2f3-e71e-4599-91f3-b5015df6de47" />
     </div>
 </div>
 
@@ -52,6 +54,7 @@ Após clonar o repositório, abra o terminal e execute o comando abaixo:
 ```bash
 docker compose up --build -d
 ```
+<br>
 
 **02 - Ingestão dos Dados**
 
@@ -67,9 +70,21 @@ Valores aceitos para o size:
 curl -X POST "http://localhost:5000/creators" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"size\": \"small\"}"
 ```
 
+<br>
 
+**03 - Visualização dos Dados**
 
+Acesse o frontend pelo caminho http://localhost:5173/ para visualização dos dados
 
+<br>
+
+**Extra - Endpoints utilizados pelo frontend**
+Também é possível visualizar os dados diretamente pelos endpoints da aplicação Node.js. Com os serviços em execução, acesse os links abaixo no navegador:
+
+- Aba Content Type Resume: http://localhost:3000/content-type-resume
+- Aba All Creators: http://localhost:3000/all-creators
+
+<br><br>
 ## <a name="contributing">🤝 Contribuições</a>
 
 Contriguições, issues, e novos recursos são vem vindos!
