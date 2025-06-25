@@ -70,6 +70,7 @@ Valores aceitos para o size:
 curl -X POST "http://localhost:5000/creators" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"size\": \"small\"}"
 ```
 
+obs: Caso opte por colocar diversos registros e sinta lentidão nas consultas,no Flasgger tem um endpoint que configura indexes para facilitar a consulta no banco de dados.
 <br>
 
 **03 - Visualização dos Dados**
