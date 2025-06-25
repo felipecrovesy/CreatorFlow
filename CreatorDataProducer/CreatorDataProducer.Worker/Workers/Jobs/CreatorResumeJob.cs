@@ -3,28 +3,30 @@ using CreatorDataProducer.Domain.Messages;
 using MassTransit;
 using Quartz;
 
-namespace CreatorDataProducer.Worker.Workers.Jobs
+namespace CreatorDataProducer.Worker.Workers.Jobs;
+
+public class CreatorResumeJob : IJob
 {
-    public class CreatorResumeJob : IJob
+    private readonly ICreatorResumeRepository _creatorResumeRepository;
+    private readonly IPublishEndpoint _publishEndpoint;
+
+    public CreatorResumeJob(ICreatorResumeRepository creatorResumeRepository, IPublishEndpoint publishEndpoint)
     {
-        private readonly ICreatorResumeRepository _creatorResumeRepository;
-        private readonly IPublishEndpoint _publishEndpoint;
+        _creatorResumeRepository = creatorResumeRepository;
+        _publishEndpoint = publishEndpoint;
+    }
 
-        public CreatorResumeJob(ICreatorResumeRepository creatorResumeRepository, IPublishEndpoint publishEndpoint)
+    public async Task Execute(IJobExecutionContext context)
+    {
+        Console.WriteLine($"[Quartz] Iniciando job em {DateTime.Now}");
+
+        var creators = await _creatorResumeRepository.GetUnprocessedAsync();
+
+        Console.WriteLine($"[Quartz] Encontrados {creators.Count} criadores não processados.");
+            
+        foreach (var creator in creators)
         {
-            _creatorResumeRepository = creatorResumeRepository;
-            _publishEndpoint = publishEndpoint;
-        }
-
-        public async Task Execute(IJobExecutionContext context)
-        {
-            Console.WriteLine($"[Quartz] Iniciando job em {DateTime.Now}");
-
-            var creators = await _creatorResumeRepository.GetUnprocessedAsync();
-
-            Console.WriteLine($"[Quartz] Encontrados {creators.Count} criadores não processados.");
-
-            foreach (var creator in creators)
+            try
             {
                 var message = new CreatorResumeMessage
                 {
@@ -36,12 +38,15 @@ namespace CreatorDataProducer.Worker.Workers.Jobs
                 };
 
                 await _publishEndpoint.Publish(message);
+
+                await _creatorResumeRepository.MarkAsProcessedAsync(new[] { creator.Id });
+
+                Console.WriteLine($"[Quartz] Criador {creator.CreatorName} publicado e marcado como processado.");
             }
-
-            var ids = creators.Select(c => c.Id);
-            await _creatorResumeRepository.MarkAsProcessedAsync(ids);
-
-            Console.WriteLine("[Quartz] Criadores marcados como processados.");
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[Quartz] Erro ao processar criador {creator.CreatorName}: {ex.Message}");
+            }
         }
     }
 }

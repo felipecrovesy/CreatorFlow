@@ -1,5 +1,4 @@
 ﻿using CreatorDataProducer.Application.Interfaces;
-using CreatorDataProducer.Domain.Messages;
 using CreatorDataProducer.Infrastructure.Configuration;
 using CreatorDataProducer.Infrastructure.Repositories;
 using CreatorDataProducer.Worker.Workers.Jobs;
