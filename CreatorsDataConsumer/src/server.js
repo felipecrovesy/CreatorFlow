@@ -6,7 +6,7 @@ import {
   getCreatorsResumeByContentType,
   getAllCreatorsPaginated
 } from './domain/services/creatorService.js';
-import { CreatorModel } from './models/CreatorModel.js';
+import { CreatorModel } from './models/creatorModel.js';
 
 export async function startServer() {
   const app = Fastify();
