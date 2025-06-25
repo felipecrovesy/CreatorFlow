@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 let externalDb;
-let ExternalTopCreator;
+let Creator;
 
 export function initExternalDb(uri) {
   externalDb = mongoose.createConnection(uri, {
@@ -10,12 +10,12 @@ export function initExternalDb(uri) {
   });
 }
 
-export function initTopCreatorModel(schema) {
-  ExternalTopCreator = externalDb.model('TopCreator', schema, 'creators');
+export function initCreatorModel(schema) {
+  Creator = externalDb.model('Creator', schema, 'creators');
 }
 
 export async function saveCreator(data) {
-  const creator = new ExternalTopCreator({
+  const creator = new Creator({
     creatorName: data.creatorName,
     totalFollowers: data.totalFollowers,
     contentType: data.contentType,
@@ -28,7 +28,7 @@ export async function saveCreator(data) {
 export async function getAllCreatorsPaginated(page = 1, pageSize = 10) {
   const skip = (page - 1) * pageSize;
 
-  const creators = await ExternalTopCreator.find({}, {
+  const creators = await Creator.find({}, {
     creatorName: 1,
     totalFollowers: 1,
     revenue: 1,
@@ -39,7 +39,7 @@ export async function getAllCreatorsPaginated(page = 1, pageSize = 10) {
   .limit(pageSize)
   .lean();
 
-  const totalCount = await ExternalTopCreator.countDocuments();
+  const totalCount = await Creator.countDocuments();
 
   return {
     total: totalCount,
@@ -51,7 +51,7 @@ export async function getAllCreatorsPaginated(page = 1, pageSize = 10) {
 }
 
 export async function getCreatorsResumeByContentType() {
-  const result = await ExternalTopCreator.aggregate([
+  const result = await Creator.aggregate([
     {
       $group: {
         _id: '$contentType',
